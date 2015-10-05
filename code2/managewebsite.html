@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Manage Website    
+    </div>
+    
+    <div class="panel-body">
+        <table ng-table="tableParams" class="table">
+            <thead>
+                <tr>
+                    <th>Website</th>
+                    <th>Website Address</th>
+                    <th>Date Added</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr ng-repeat="website in websites"> 
+                    <td>{{website.site_name}} </td>
+                    <td>{{website.url}} </td>
+                    <td>{{website.date_added}} </td>
+                    <td>
+                        <div class="btn-group" dropdown>
+                            <button type="button" class="btn btn-danger">Action</button>
+                            <button type="button" class="btn btn-danger dropdown-toggle">
+                                <span class="caret"></span>
+                                <span class="sr-only">Split button!</span>
+                            </button>
+                            
+                            <ul class="dropdown-menu" role="menu">                    
+                                <li><a ui-sref="crawl.updateWebsite({id: website.site_id})">Edit</a></li>
+                                <li><a href="" ng-click="getCompetitorSite(website.site_id)">Competitor</a></li>
+                                
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <pagination direction-links="true" boundary-links="true" max-size="maxSize" num-pages="numPages" total-items="totalItems" page="currentPage"></pagination> 
+    </div>
+</div>
