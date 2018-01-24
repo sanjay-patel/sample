@@ -1,0 +1,33 @@
+/*******
+
+
+Below test case is for angular 2+ and written in jasmin & karma 
+
+*****/
+
+import { MyTestService } from './common/services';
+
+describe('myTestService', () => {
+
+  let myTestService;
+  
+  beforeEach(inject([MyTestService], (svc) => {
+    myTestService = svc;
+  }))
+
+  describe('should handle http404', () => {
+      mockBackend.connections.subscribe((connection) => {
+          connection.mockRespond(new Response(new ResponseOptions({
+            body: {},
+            statuscode: 404
+          })));
+        });  
+        
+        
+        myTestService.getData().subscribe((response) => {
+            expect(response.statuscode).toBe(404);
+        })
+  })
+
+})
+  
